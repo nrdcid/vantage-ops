@@ -41,5 +41,15 @@ join coverage. The current raw METAR file has no ORD/JFK/ATL stations, so its
 reported weather match rate is expected to be zero until a matching export is
 added.
 
+Train the initial temporal baseline:
+
+```bash
+PYTHONPATH=src python -m vantage.model
+```
+
+This writes `data/processed/baseline_metrics.json` and reports chronological
+train, validation, and test metrics. Weather fields remain nullable until
+corridor METAR data is available.
+
 The download command accepts explicit URLs because BTS exports and AWC cache
 locations vary by month and should be recorded in a reproducible manifest.
