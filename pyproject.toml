@@ -18,9 +18,13 @@ dev = ["pytest>=8.0", "ruff>=0.6"]
 [project.scripts]
 download-data = "vantage.data_sources:main"
 check-join-keys = "vantage.join_keys:main"
+build-dataset = "vantage.pipeline:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools]
+py-modules = ["config", "data_sources", "join_keys", "pipeline"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -28,4 +32,3 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-
