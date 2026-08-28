@@ -26,6 +26,20 @@ python -m vantage.join_keys --bts data/raw/bts.csv --awc data/raw/awc.csv
 pytest
 ```
 
+## Phase 1
+
+Build the validated corridor dataset with a time-safe METAR join:
+
+```bash
+VANTAGE_START_DATE=2026-01-01 VANTAGE_END_DATE=2026-01-09 \
+  build-dataset
+```
+
+The command writes `data/processed/flights_weather.csv`, labels flights with a
+15-minute departure delay or cancellation as disrupted, and reports weather
+join coverage. The current raw METAR file has no ORD/JFK/ATL stations, so its
+reported weather match rate is expected to be zero until a matching export is
+added.
+
 The download command accepts explicit URLs because BTS exports and AWC cache
 locations vary by month and should be recorded in a reproducible manifest.
-
