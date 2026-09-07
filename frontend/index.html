@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b111c" />
+    <title>Vantage · Predictive Ops</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">V</div>
+          <div><strong>vantage</strong><span>predictive ops</span></div>
+        </div>
+
+        <div class="workspace-label">WORKSPACE</div>
+        <button class="workspace-switcher"><span class="status-dot"></span> Summer corridor <span class="chevron">⌄</span></button>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span> Operations <span class="nav-count">12</span></button>
+          <button class="nav-item" data-view="flights"><span class="nav-icon">✈</span> Flight board</button>
+          <button class="nav-item" data-view="weather"><span class="nav-icon">◌</span> Weather picture</button>
+          <button class="nav-item" data-view="models"><span class="nav-icon">⌁</span> Model health</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="feed-status"><span class="pulse-dot"></span><div><strong>Live feeds nominal</strong><small>Updated 2 min ago</small></div></div>
+          <button class="nav-item"><span class="nav-icon">⚙</span> Settings</button>
+          <div class="user"><div class="avatar">AM</div><div><strong>Alex Morgan</strong><small>Operations lead</small></div><span class="more">•••</span></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Operations</span><span>/</span><strong>Corridor overview</strong></div>
+          <div class="top-actions"><span class="last-sync">Last sync <strong id="sync-time">09:42:18 EST</strong></span><button class="icon-button" title="Notifications">♢<span class="notification-dot"></span></button><button class="help-button">?</button></div>
+        </header>
+
+        <div class="content-wrap">
+          <div class="page-heading">
+            <div><div class="eyebrow">TUESDAY · JUL 16, 2026</div><h1>Good morning, Alex</h1><p>Here’s the current picture across your priority corridor.</p></div>
+            <button class="refresh-button" id="refresh"><span>↻</span> Refresh picture</button>
+          </div>
+
+          <section class="alert-banner"><div class="alert-symbol">!</div><div><strong>Convective activity building near ORD</strong><span>Storm cells are forecast to intensify between 14:00–17:00. 4 flights need attention.</span></div><button class="banner-link" data-view="weather">View weather picture <span>→</span></button></section>
+
+          <section class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Flights monitored</span><span class="stat-icon plane">✈</span></div><div class="stat-value">42</div><div class="stat-foot positive">↑ 8.3% <span>vs. yesterday</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>At risk</span><span class="stat-icon warning">!</span></div><div class="stat-value orange">7</div><div class="stat-foot negative">↑ 2 <span>since 08:00</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>On time forecast</span><span class="stat-icon check">✓</span></div><div class="stat-value">86<span class="unit">%</span></div><div class="stat-foot positive">↑ 4.1% <span>model confidence 0.91</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Actions pending</span><span class="stat-icon action">↗</span></div><div class="stat-value">4</div><div class="stat-foot neutral"><span>2 high priority</span></div></article>
+          </section>
+
+          <div class="section-heading"><div><h2>Corridor picture</h2><p>Real-time position and disruption risk across your network.</p></div><div class="segmented"><button class="segment active">Map</button><button class="segment">List</button></div></div>
+          <section class="operations-grid">
+            <article class="map-card">
+              <div class="map-controls"><div class="map-legend"><span><i class="legend-dot safe"></i> On track</span><span><i class="legend-dot watch"></i> Watch</span><span><i class="legend-dot danger"></i> At risk</span></div><button class="map-expand">⛶</button></div>
+              <div class="map-canvas" aria-label="Schematic map showing flight corridor between Atlanta, Chicago, and New York">
+                <div class="map-grid"></div><div class="storm storm-a"><span>STORM CELL</span></div><div class="storm storm-b"></div>
+                <svg class="routes" viewBox="0 0 700 400" preserveAspectRatio="none" aria-hidden="true"><path d="M123 280 C250 250 290 145 480 113"/><path d="M123 280 C265 305 365 295 480 113"/><path d="M480 113 C560 90 595 185 615 286"/><path d="M123 280 C300 230 430 250 615 286"/></svg>
+                <button class="airport atl" data-airport="ATL"><b>ATL</b><span>Atlanta</span></button><button class="airport ord" data-airport="ORD"><b>ORD</b><span>Chicago</span></button><button class="airport jfk" data-airport="JFK"><b>JFK</b><span>New York</span></button>
+                <span class="aircraft aircraft-1 safe">✈</span><span class="aircraft aircraft-2 watch">✈</span><span class="aircraft aircraft-3 danger">✈</span><div class="map-label">LIVE POSITION · 09:42 EST</div>
+              </div>
+            </article>
+
+            <article class="focus-card"><div class="card-heading"><div><h3>Needs attention</h3><p>Prioritized by disruption impact</p></div><button class="text-button" data-view="flights">View all <span>→</span></button></div><div class="flight-list" id="flight-list"></div></article>
+          </section>
+
+          <div class="section-heading recommendation-heading"><div><h2>Recommended actions</h2><p>Decision support based on current conditions and historical outcomes.</p></div><span class="updated-chip"><i></i> Live recommendation</span></div>
+          <section class="recommendation-grid">
+            <article class="recommendation-card featured"><div class="recommendation-top"><span class="rank">01</span><span class="recommendation-tag">HIGHEST IMPACT</span><span class="confidence">91% confidence</span></div><h3>Hold UA 1847 at gate for 20 min</h3><p>Reduce exposure to the ORD storm cell while preserving the JFK connection window.</p><div class="impact-row"><div><small>Est. delay avoided</small><strong>47 min</strong></div><div><small>Downstream flights</small><strong>3</strong></div><div><small>Trade-off</small><strong class="tradeoff">Low</strong></div></div><button class="action-button">Review action <span>→</span></button></article>
+            <article class="recommendation-card"><div class="recommendation-top"><span class="rank">02</span><span class="confidence">78% confidence</span></div><h3>Pre-stage crew for DL 2210</h3><p>Protect the ATL departure bank against a likely late-aircraft cascade.</p><div class="impact-row"><div><small>Est. delay avoided</small><strong>18 min</strong></div><div><small>Downstream flights</small><strong>2</strong></div><div><small>Trade-off</small><strong class="tradeoff">Low</strong></div></div><button class="outline-button">Review action <span>→</span></button></article>
+            <article class="recommendation-card"><div class="recommendation-top"><span class="rank">03</span><span class="confidence">64% confidence</span></div><h3>Protect JFK connection bank</h3><p>Reassign two gates to absorb the projected arrival bunching after 16:00.</p><div class="impact-row"><div><small>Est. delay avoided</small><strong>12 min</strong></div><div><small>Downstream flights</small><strong>5</strong></div><div><small>Trade-off</small><strong class="tradeoff medium">Medium</strong></div></div><button class="outline-button">Review action <span>→</span></button></article>
+          </section>
+
+          <section class="evidence-panel"><div class="evidence-title"><div class="evidence-icon">⌁</div><div><h3>Why is UA 1847 at risk?</h3><p>Model explanation · Generated from current feeds</p></div><span class="evidence-score">Risk score <strong>0.78</strong></span></div><div class="evidence-items"><div class="evidence-item"><span class="evidence-bullet weather-bullet">☁</span><div><strong>Weather is the primary driver</strong><p>Convective SIGMET <a href="#">WS 451</a> overlaps the ORD arrival corridor from 14:10–16:40.</p></div><span class="driver-score">+0.31</span></div><div class="evidence-item"><span class="evidence-bullet history-bullet">◷</span><div><strong>Historical pattern detected</strong><p>Similar conditions produced an average <a href="#">23 min delay</a> on this route over the last 90 days.</p></div><span class="driver-score">+0.18</span></div><div class="evidence-item"><span class="evidence-bullet network-bullet">⌁</span><div><strong>Network propagation risk</strong><p>Aircraft rotation from IAH is currently 18 minutes behind schedule.</p></div><span class="driver-score">+0.12</span></div></div><button class="evidence-footer">Open full explanation <span>→</span></button></section>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status">Picture refreshed</div>
+    <script src="./app.js"></script>
+  </body>
+</html>
