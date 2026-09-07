@@ -53,3 +53,18 @@ corridor METAR data is available.
 
 The download command accepts explicit URLs because BTS exports and AWC cache
 locations vary by month and should be recorded in a reproducible manifest.
+
+## Frontend prototype
+
+The first operator dashboard slice lives in `frontend/` and is intentionally
+dependency-free while the FastAPI service is being built. Open
+`frontend/index.html` directly, or serve the directory locally:
+
+```bash
+python -m http.server 4173 --directory frontend
+```
+
+It currently uses demo data for the corridor map, risk queue, recommended
+actions, and evidence panel. The flight queue and refresh controls are wired
+for interaction; the next integration step is replacing the demo state with
+FastAPI responses.
